@@ -5,7 +5,7 @@
       factory angular
   else if typeof exports is 'object' and typeof exports.nodeName isnt 'string'
     # CommonJS
-    factory require('angular')
+    module.exports = factory require('angular')
   else
     # Browser globals
     factory(root.angular);
@@ -57,5 +57,5 @@
       return $delegate
     ]
   ]
-
+  .name
 )

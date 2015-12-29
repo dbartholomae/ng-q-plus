@@ -168,3 +168,14 @@ describe "An ng-q-plus module", ->
       pending: -> $q.all [$q.defer().promise]
       fulfilled: (val) -> $q.all([val]).get(0)
       rejected: (err) -> $q.all([$q.reject err]).get(0)
+
+  describe "that is loaded", ->
+    it "exports the module name", (done) ->
+      if requirejs?
+        requirejs ['base/lib/ng-q-plus.js'], (name) ->
+          expect(name).to.equal 'ng-q-plus'
+          done()
+      else if require?
+        expect(require('../lib/ng-q-plus.js')).to.equal 'ng-q-plus'
+        done()
+      else done()

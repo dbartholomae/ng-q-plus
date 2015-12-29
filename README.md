@@ -2,7 +2,7 @@
 **ng-q-plus** is an angular module enhancing $q promises with additional features
 
 ```coffeescript
-angular.module 'app', ['ng-q-plus']
+angular.module 'app', [require('ng-q-plus')]
 .service 'myService', ['$q', ($q) ->
   $q.when a: 1
   .get('a')
@@ -14,7 +14,7 @@ angular.module 'app', ['ng-q-plus']
 ## API
 
 The module can be required via browserify require, as an AMD module via requirejs or as a global, if window.angular is
-present. It does not export anything and just creates the angular module 'ng-q-plus'. This module augments the existing
+present. It creates the angular module 'ng-q-plus' and exports its name. This module augments the existing
 `$q` service, it does not create a service of its own.
 Each promise gets the following new methods:
 
