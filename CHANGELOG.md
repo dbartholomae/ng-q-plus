@@ -9,5 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Changed version to finished to make full use of [Semantic Versioning](http://semver.org/)
 - Added `all`, `props`, `map`, and `each`
 
+### Changed
+- If required as a AMD or CommonJs style module, it exports the angular module's name instead of `undefined`
+
 [Unreleased]: https://github.com/dbartholomae/ng-q-plus/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/dbartholomae/ng-q-plus/compare/v0.0.1...v1.0.0
