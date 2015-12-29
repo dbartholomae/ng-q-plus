@@ -58,7 +58,14 @@
         @then (arr) -> $delegate.all arr
 
       promise.map = (cb) ->
-        @all().then (arr) -> $delegate.all arr.map cb
+        @all().then (arr) ->
+          if Array.isArray arr
+            return $delegate.all arr.map cb
+          else
+            obj = {}
+            for key, value of arr
+              obj[key] = cb key, value
+            return $delegate.all obj
 
       promise.each = (cb) ->
         @map (el) -> cb el; el

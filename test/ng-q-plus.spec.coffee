@@ -164,6 +164,19 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
+    it "allows to map a promise for an object", (done) ->
+      obj = {a: promiseFactory.fulfilled(1), b: promiseFactory.fulfilled(2)}
+      promiseFactory.fulfilled(obj)
+      .map (key, value) ->
+        if key is 'a'
+          return 3
+        else if key is 'b'
+          return 4
+      .then (obj) ->
+        expect(obj).to.deep.equal {a: 3, b: 4}
+        done()
+      $rootScope.$digest()
+
     it "allows to use each for a promise for an array", (done) ->
       arr = [promiseFactory.fulfilled(1), promiseFactory.fulfilled(2)]
       result = []

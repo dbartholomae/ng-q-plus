@@ -62,7 +62,10 @@ Equivalent to `then (arr) -> $q.all arr`
 Alternative name for `all`
 
 ### `map(cb)`
-Equivalent to `all().then (arr) -> $q.all arr.map cb`
+For promises for arrays equivalent to `all().then (arr) -> $q.all arr.map cb`.
+For promises for objects `obj` the callback gets called as `cb(key, obj[key])`
+for all own properties of `obj` and uses the results from the callback to update
+ these values.
 
 ### `each(cb)`
 Equivalent to `@map (el) -> cb el; el`
