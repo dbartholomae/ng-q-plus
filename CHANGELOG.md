@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.1.1] - 2015-12-29
 ### Fixed
-- `set` now also works with values that are promises
+- `set` now also works with attribute names and values that are promises
 
 ## [1.1.0] - 2015-12-29
 ### Added

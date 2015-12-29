@@ -41,10 +41,12 @@
 
       promise.set = (attr, val) ->
         @then (o) ->
-          $delegate.resolve val
-          .then (val) ->
-            o[attr] = val
-            return o
+          $delegate.resolve attr
+          .then (attr) ->
+            $delegate.resolve val
+            .then (val) ->
+              o[attr] = val
+              return o
 
       promise.post = (method, args) ->
         @then (o) -> o[method].apply o, args

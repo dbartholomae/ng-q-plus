@@ -38,8 +38,8 @@ Equivalent to `then (value) -> cb value; return value`
 Equivalent to `then (o) -> o[attr]`
 
 ### `set(attr, val)`
-If `val` is not a promise this is equivalent to `tap (o) -> o[attr] = val`.
-If `val` is a promise it gets resolved and `set` works as written above. 
+If `val` and `attr` are not promises this is equivalent to `tap (o) -> o[attr] = val`.
+If `val` or `attr` are promises these get resolved and `set` works as written above. 
 Please note that this can lead to side effects.
 
 ### `post(method, args)`
