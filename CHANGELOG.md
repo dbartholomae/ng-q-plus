@@ -4,7 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 1.1.0 - 2015-12-29
+## [1.1.1] - 2015-12-29
+### Fixed
+- `set` now also works with values that are promises
+
+## [1.1.0] - 2015-12-29
 ### Added
 - Added `set`
 
@@ -16,5 +20,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - If required as a AMD or CommonJs style module, it exports the angular module's name instead of `undefined`
 
-[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/dbartholomae/ngQplus/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/dbartholomae/ngQplus/compare/1.0.0...1.1.0
