@@ -157,13 +157,11 @@ describe "An ng-q-plus module", ->
 
     it "allows to map a promise for an array", (done) ->
       arr = [promiseFactory.fulfilled(1), promiseFactory.fulfilled(2)]
-      result = []
       promiseFactory.fulfilled(arr)
-      .map (el) ->
-        result.push el
-        if result.length is 2
-          expect(result).to.deep.equal [1, 2]
-          done()
+      .map (el) -> "a" + el
+      .then (arr) ->
+        expect(arr).to.deep.equal ["a1", "a2"]
+        done()
       $rootScope.$digest()
 
   describe "that creates a promise via defer()", ->
