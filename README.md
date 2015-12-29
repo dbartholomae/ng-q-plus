@@ -56,4 +56,8 @@ Equivalent to `then (f) -> f.apply undefined, args`
 Equivalent to `then (f) -> f.apply undefined, [arg1, arg2, ...]`
 
 ### `all()`
-Equivalent to `then (arr) -> $q.all arr.map (el) -> $q.resolve el`
+Equivalent to `then (arr) -> $q.all arr`
+
+### `props()`
+Alternative name for `all`
+

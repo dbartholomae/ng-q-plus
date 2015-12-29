@@ -147,6 +147,14 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
+    it "allows to convert a promise for a hash of promises into a promise for a hash", (done) ->
+      obj = {a: promiseFactory.fulfilled(1), b: promiseFactory.fulfilled(2)}
+      promiseFactory.fulfilled(obj).all()
+      .then (obj) ->
+        expect(obj).to.deep.equal {a: 1, b: 2}
+        done()
+      $rootScope.$digest()
+
   describe "that creates a promise via defer()", ->
     testPromise.call this,
       pending: -> $q.defer().promise

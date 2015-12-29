@@ -54,8 +54,8 @@
       promise.fcall = (args...) ->
         @then (f) -> f.apply undefined, args
 
-      promise.all = ->
-        @then (arr) -> $delegate.all arr.map (el) -> $delegate.resolve el
+      promise.all = promise.props = ->
+        @then (arr) -> $delegate.all arr
 
       return $delegate
     ]
