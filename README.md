@@ -37,6 +37,10 @@ Equivalent to `then (value) -> cb value; return value`
 ### `get(attr)`
 Equivalent to `then (o) -> o[attr]`
 
+### `set(attr, val)`
+Equivalent to `tap (o) -> o[attr] = val`
+Please note that this can lead to side effects.
+
 ### `post(method, args)`
 Equivalent to `then (o) -> o[method].apply o, args`
 

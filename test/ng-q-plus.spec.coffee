@@ -97,6 +97,13 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
+    it "allows to set attribute values", (done) ->
+      promiseFactory.fulfilled(test: "value").set('test', "new value")
+      .then (val) ->
+        expect(val).to.deep.equal {test: "new value"}
+        done()
+      $rootScope.$digest()
+
     it "allows to post methods", (done) ->
       promiseFactory.fulfilled(test: (val)-> val).post('test', ["value"])
       .then (val) ->

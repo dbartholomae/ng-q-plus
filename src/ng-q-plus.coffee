@@ -39,6 +39,9 @@
       promise.get = (attr) ->
         @then (o) -> o[attr]
 
+      promise.set = (attr, val) ->
+        @tap (o) -> o[attr] = val
+
       promise.post = (method, args) ->
         @then (o) -> o[method].apply o, args
 
