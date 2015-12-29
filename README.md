@@ -63,3 +63,6 @@ Alternative name for `all`
 
 ### `map(cb)`
 Equivalent to `all().then (arr) -> $q.all arr.map cb`
+
+### `each(cb)`
+Equivalent to `@map (el) -> cb el; el`

@@ -164,6 +164,19 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
+    it "allows to use each for a promise for an array", (done) ->
+      arr = [promiseFactory.fulfilled(1), promiseFactory.fulfilled(2)]
+      result = []
+      promiseFactory.fulfilled(arr)
+      .each (el) ->
+        result.push el
+        return "a" + el
+      .then (arr) ->
+        expect(result).to.deep.equal [1, 2]
+        expect(arr).to.deep.equal [1, 2]
+        done()
+      $rootScope.$digest()
+
   describe "that creates a promise via defer()", ->
     testPromise.call this,
       pending: -> $q.defer().promise

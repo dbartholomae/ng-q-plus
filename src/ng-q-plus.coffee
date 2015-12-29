@@ -60,6 +60,9 @@
       promise.map = (cb) ->
         @all().then (arr) -> $delegate.all arr.map cb
 
+      promise.each = (cb) ->
+        @map (el) -> cb el; el
+
       return $delegate
     ]
   ]
