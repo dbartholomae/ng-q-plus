@@ -32,7 +32,7 @@
   },
   "scripts": {
     "pretest": "npm run build",
-    "test": "n-run \"npm run test:requirejs\" \"npm run test:global\" \"npm run test:browserify\"",
+    "test": "npm run test:requirejs && npm run test:global && npm run test:browserify",
     "test:requirejs": "karma start karma.requirejs.conf.coffee",
     "test:global": "karma start karma.global.conf.coffee",
     "test:browserify": "karma start karma.browserify.conf.coffee",
