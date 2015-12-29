@@ -139,6 +139,14 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
+    it "allows to convert a promise for an array of promises into a promise for an array", (done) ->
+      arr = [promiseFactory.fulfilled(1), promiseFactory.fulfilled(2)]
+      promiseFactory.fulfilled(arr).all()
+      .then (arr) ->
+        expect(arr).to.deep.equal [1, 2]
+        done()
+      $rootScope.$digest()
+
   describe "that creates a promise via defer()", ->
     testPromise.call this,
       pending: -> $q.defer().promise

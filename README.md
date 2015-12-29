@@ -54,3 +54,6 @@ Equivalent to `then (f) -> f.apply undefined, args`
 
 ### `fcall(arg1, arg2, ...)`
 Equivalent to `then (f) -> f.apply undefined, [arg1, arg2, ...]`
+
+### `all()`
+Equivalent to `then (arr) -> $q.all arr.map (el) -> $q.resolve el`
