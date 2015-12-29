@@ -12,4 +12,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - If required as a AMD or CommonJs style module, it exports the angular module's name instead of `undefined`
 
-[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.0.0...HEAD
