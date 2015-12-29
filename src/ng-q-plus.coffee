@@ -57,6 +57,9 @@
       promise.all = promise.props = ->
         @then (arr) -> $delegate.all arr
 
+      promise.map = (cb) ->
+        @all().then (arr) -> $delegate.all arr.map cb
+
       return $delegate
     ]
   ]

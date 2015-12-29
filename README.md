@@ -61,3 +61,5 @@ Equivalent to `then (arr) -> $q.all arr`
 ### `props()`
 Alternative name for `all`
 
+### `map(cb)`
+Equivalent to `all().then (arr) -> $q.all arr.map cb`
