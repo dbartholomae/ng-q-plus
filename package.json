@@ -1,6 +1,6 @@
 {
   "name": "ng-q-plus",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A module enhancing $q promises with additional features",
   "keywords": ["angularjs", "requirejs", "q", "promise", "browserify", "$q"],
   "homepage": "https://github.com/dbartholomae/ng-g-plus",
