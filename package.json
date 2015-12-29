@@ -1,10 +1,10 @@
 {
   "name": "ng-q-plus",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A module enhancing $q promises with additional features",
   "keywords": ["angularjs", "requirejs", "q", "promise", "browserify", "$q"],
-  "homepage": "https://github.com/dbartholomae/ng-g-plus",
-  "bugs": "https://github.com/dbartholomae/ng-g-plus/issues",
+  "homepage": "https://github.com/dbartholomae/ngQplus",
+  "bugs": "https://github.com/dbartholomae/ngQplus/issues",
   "license": "MIT",
   "author": "Daniel Bartholomae <daniel@bartholomae.name>",
   "dependencies": {},
@@ -28,7 +28,7 @@
   "main": "lib/ng-q-plus.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dbartholomae/ng-q-plus.git"
+    "url": "https://github.com/dbartholomae/ngQplus.git"
   },
   "scripts": {
     "pretest": "npm run build",

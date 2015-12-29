@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.2] - 2015-12-29
+### Fixed
+- Name of GitHub repository in `package.json`
+
 ## [1.1.1] - 2015-12-29
 ### Fixed
 - `set` now also works with attribute names and values that are promises
@@ -20,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - If required as a AMD or CommonJs style module, it exports the angular module's name instead of `undefined`
 
-[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.1.1...HEAD
+[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.1.2...HEAD
+[1.1.2]: https://github.com/dbartholomae/ngQplus/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/dbartholomae/ngQplus/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/dbartholomae/ngQplus/compare/1.0.0...1.1.0
