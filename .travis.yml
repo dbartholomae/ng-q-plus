@@ -2,3 +2,6 @@ language: node_js
 node_js:
   node
   iojs
+
+before_script:
+ - chmod +x node-modules/coffee-script/bin/coffee
