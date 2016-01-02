@@ -13,7 +13,18 @@
   },
   "devDependencies": {
     "npm-build-tools": "*",
-    "coffee-script": "1.*"
+    "coffee-script": "1.*",
+    "karma": "~0.13",
+    "karma-mocha": "*",
+    "karma-angular": "*",
+    "karma-chai-plugins": "*",
+    "angular-mocks": "*",
+    "karma-coffee-preprocessor": "*",
+    "karma-phantomjs-launcher": "*",
+    "karma-browserify": "*",
+    "angular": "1.*",
+    "requirejs": "*",
+    "coffeeify": "2.*"
   },
   "main": "lib/ng-q-plus.js",
   "repository": {
