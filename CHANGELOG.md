@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.3] - 2016-01-02
+### Fixed
+- No changes on production version
+- Fixed a bug in the testing script
+- Added travis build script
+- Added version number in README.md
+
 ## [1.1.2] - 2015-12-29
 ### Fixed
 - Name of GitHub repository in `package.json`
@@ -24,7 +31,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - If required as a AMD or CommonJs style module, it exports the angular module's name instead of `undefined`
 
-[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.1.2...HEAD
+[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.1.3...HEAD
+[1.1.3]: https://github.com/dbartholomae/ngQplus/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/dbartholomae/ngQplus/compare/1.1.1...1.1.2
+[1.1.1]: https://github.com/dbartholomae/ngQplus/compare/1.1.0...1.1.1
 [1.1.1]: https://github.com/dbartholomae/ngQplus/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/dbartholomae/ngQplus/compare/1.0.0...1.1.0
