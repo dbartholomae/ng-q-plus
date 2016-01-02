@@ -21,6 +21,7 @@
     "karma-chai-plugins": "*",
     "karma-coffee-preprocessor": "*",
     "karma-phantomjs-launcher": "*",
+    "phantomjs": "*",
     "karma-browserify": "*",
     "angular": "1.*",
     "angular-mocks": "*",
