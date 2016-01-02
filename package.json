@@ -14,15 +14,16 @@
   "devDependencies": {
     "npm-build-tools": "*",
     "coffee-script": "1.*",
+    "mocha": "*",
     "karma": "~0.13",
     "karma-mocha": "*",
     "karma-angular": "*",
     "karma-chai-plugins": "*",
-    "angular-mocks": "*",
     "karma-coffee-preprocessor": "*",
     "karma-phantomjs-launcher": "*",
     "karma-browserify": "*",
     "angular": "1.*",
+    "angular-mocks": "*",
     "requirejs": "*",
     "coffeeify": "2.*"
   },
@@ -34,9 +35,10 @@
   "scripts": {
     "pretest": "npm run build",
     "test": "npm run test:requirejs && npm run test:global && npm run test:browserify",
-    "test:requirejs": "node_modules/karma/bin/karma start karma.requirejs.conf.coffee",
-    "test:global": "node_modules/karma/bin/karma start karma.global.conf.coffee",
-    "test:browserify": "node_modules/karma/bin/karma start karma.browserify.conf.coffee",
-    "build": "node_modules/coffee-script/bin/coffee -c -o lib/ src/"
+    "test:requirejs": "karma start karma.requirejs.conf.coffee",
+    "test:global": "karma start karma.global.conf.coffee",
+    "test:browserify": "karma start karma.browserify.conf.coffee",
+    "prebuild": "npm install",
+    "build": "coffee -c -o lib/ src/"
   }
 }

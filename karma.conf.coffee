@@ -2,7 +2,7 @@
 
 module.exports = (config) ->
   # frameworks to use
-  frameworks: ['mocha', 'chai', 'angular']
+  frameworks: ['angular', 'mocha', 'chai']
 
   preprocessors:
     "test/**/*.coffee": ['coffee']
