@@ -49,9 +49,8 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test",
       "commit-msg": "validate-commit-msg",
-      "pre-push": "npm run update-changelog && npm run commit-changelog"
+      "pre-push": "npm run test && npm run update-changelog && npm run commit-changelog"
     }
   },
   "scripts": {
