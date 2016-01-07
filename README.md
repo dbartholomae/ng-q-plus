@@ -75,3 +75,6 @@ for all own properties of `obj` and uses the results from the callback to update
 
 ### `each(cb)`
 Equivalent to `@map (el) -> cb el; el`
+
+### `join(p1, p2, ..., cb)`
+Equivalent to `@map (el) -> cb el; el`

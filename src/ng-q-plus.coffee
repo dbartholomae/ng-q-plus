@@ -79,6 +79,10 @@
       promise.each = (cb) ->
         @map (el) -> cb el; el
 
+      promise.join = (promises..., cb) ->
+        $delegate.all [@, promises...]
+        .then (promises) -> cb promises...
+
       return $delegate
     ]
   ]

@@ -198,6 +198,22 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
+    it "allows to join multiple promises", (done) ->
+      p1 = promiseFactory.fulfilled "a"
+      p2 = promiseFactory.fulfilled "b"
+      p3 = promiseFactory.fulfilled "c"
+      p4 = promiseFactory.fulfilled "d"
+      p1.join p2, p3, p4, (v1, v2, v3, v4) ->
+        expect(v1).to.equal "a"
+        expect(v2).to.equal "b"
+        expect(v3).to.equal "c"
+        expect(v4).to.equal "d"
+        return v1 + v2 + v3 + v4
+      .then (result) ->
+        expect(result).to.equal "abcd"
+        done()
+      $rootScope.$digest()
+
   describe "that creates a promise via defer()", ->
     testPromise.call this,
       pending: -> $q.defer().promise
