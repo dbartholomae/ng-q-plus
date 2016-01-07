@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.1] - 2016-01-07
+### Fixed
+- Added description for `join`
+
 ## [1.2.0] - 2016-01-07
 ### Added
 - Added `join`
@@ -35,8 +39,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - If required as a AMD or CommonJs style module, it exports the angular module's name instead of `undefined`
 
-[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.2.0...HEAD
-[1.1.4]: https://github.com/dbartholomae/ngQplus/compare/1.1.3...1.2.0
+[Unreleased]: https://github.com/dbartholomae/ngQplus/compare/1.2.1...HEAD
+[1.2.1]: https://github.com/dbartholomae/ngQplus/compare/1.2.0...1.2.1
+[1.2.0]: https://github.com/dbartholomae/ngQplus/compare/1.1.3...1.2.0
 [1.1.3]: https://github.com/dbartholomae/ngQplus/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/dbartholomae/ngQplus/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/dbartholomae/ngQplus/compare/1.1.0...1.1.1

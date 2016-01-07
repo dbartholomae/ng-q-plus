@@ -1,4 +1,4 @@
-# ng-q-plus@1.2.0
+# ng-q-plus@1.2.1
 [![Build Status](https://travis-ci.org/dbartholomae/ngQPlus.svg?branch=master)](https://travis-ci.org/dbartholomae/ngQPlus)
 **ng-q-plus** is an angular module enhancing $q promises with additional features
 
@@ -77,4 +77,7 @@ for all own properties of `obj` and uses the results from the callback to update
 Equivalent to `@map (el) -> cb el; el`
 
 ### `join(p1, p2, ..., cb)`
-Equivalent to `@map (el) -> cb el; el`
+Calls `cb(v0, v1, v2, ...)` with `v0` being the value of the resolved promise
+itself and `v1, v2, ...` being the values of the resolved promises
+`v1, v2, ...`. It returns a promise for the result of `cb`.
+If any promise rejects, it returns a promise rejected with the same reason. 
