@@ -1,7 +1,7 @@
 ((root, factory) ->
   if typeof define is 'function' and define.amd
     # AMD. Register as an anonymous module.
-    define ['angularjs'], (angular) ->
+    define ['angular'], (angular) ->
       factory angular
   else if typeof exports is 'object' and typeof exports.nodeName isnt 'string'
     # CommonJS
