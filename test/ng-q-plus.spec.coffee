@@ -66,6 +66,16 @@ describe "An ng-q-plus module", ->
           done()
         $browser.defer.flush()
         $rootScope.$digest()
+      it "calls a given callback if the time runs out before the promise is resolved", (done) ->
+        promise = promiseFactory.pending().timeout 100, (deferred) ->
+          deferred.reject "Custom rejection message"
+        $rootScope.$digest()
+        expect(promise.isPending()).to.be.true
+        promise.catch (err) ->
+          expect(err).to.equal "Custom rejection message"
+          done()
+        $browser.defer.flush()
+        $rootScope.$digest()
       it "rejects if the promise is rejected", (done) ->
         promise = promiseFactory.rejected("error").timeout 100
         promise.catch (err) ->
@@ -120,8 +130,13 @@ describe "An ng-q-plus module", ->
       $rootScope.$digest()
 
     it "allows to send methods", (done) ->
+      hasBeenCalled = false
+      promiseFactory.fulfilled(test: (val)-> val).send('test')
+      .then ->
+        hasBeenCalled = true
       promiseFactory.fulfilled(test: (val)-> val).send('test', "value")
       .then (val) ->
+        expect(hasBeenCalled).to.be.true
         expect(val).to.equal "value"
         done()
       $rootScope.$digest()
@@ -141,8 +156,13 @@ describe "An ng-q-plus module", ->
       $rootScope.$digest()
 
     it "allows to call functions", (done) ->
+      hasBeenCalled = false
+      promiseFactory.fulfilled((val) -> val).fcall()
+      .then ->
+        hasBeenCalled = true
       promiseFactory.fulfilled((val) -> val).fcall("value")
       .then (val) ->
+        expect(hasBeenCalled).to.be.true
         expect(val).to.equal "value"
         done()
       $rootScope.$digest()
@@ -203,6 +223,8 @@ describe "An ng-q-plus module", ->
       p2 = promiseFactory.fulfilled "b"
       p3 = promiseFactory.fulfilled "c"
       p4 = promiseFactory.fulfilled "d"
+      p1.join (v1) ->
+        expect(v1).to.equal "a"
       p1.join p2, p3, p4, (v1, v2, v3, v4) ->
         expect(v1).to.equal "a"
         expect(v2).to.equal "b"
