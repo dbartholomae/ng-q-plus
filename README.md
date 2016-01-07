@@ -1,4 +1,4 @@
-# ng-q-plus@1.1.3
+# ng-q-plus@1.2.0
 [![Build Status](https://travis-ci.org/dbartholomae/ngQPlus.svg?branch=master)](https://travis-ci.org/dbartholomae/ngQPlus)
 **ng-q-plus** is an angular module enhancing $q promises with additional features
 
