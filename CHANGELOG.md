@@ -1,5 +1,5 @@
 <a name=""></a>
-# [](https://github.com/dbartholomae/ng-q-plus/compare/v1.2.1...v) (2016-01-07)
+# [2.0.0](https://github.com/dbartholomae/ng-q-plus/compare/v1.2.1...v2.0.0) (2016-01-07)
 
 
 ### Bug Fixes
