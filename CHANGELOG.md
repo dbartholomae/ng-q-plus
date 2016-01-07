@@ -2,6 +2,21 @@
 # [](https://github.com/dbartholomae/ng-q-plus/compare/v1.2.1...v) (2016-01-07)
 
 
+### Bug Fixes
+
+* Change name of angular module that is required with requirejs from 'angularjs' t ([aac1c03](https://github.com/dbartholomae/ng-q-plus/commit/aac1c03))
+
+
+### BREAKING CHANGES
+
+* When requiring ng-q-plus with RequireJS you need to provide angular as 'angular' instead of 'angularjs'
+
+
+
+<a name=""></a>
+# [](https://github.com/dbartholomae/ng-q-plus/compare/v1.2.1...v) (2016-01-07)
+
+
 
 
 <a name="1.2.1"></a>
