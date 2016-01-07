@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "npm-build-tools": "*",
+    "ghooks": "*",
+    "validate-commit-msg": "*",
     "coffee-script": "1.*",
     "nsp": "*",
     "mocha": "*",
@@ -33,6 +35,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/dbartholomae/ngQplus.git"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run test",
+      "commit-msg": "validate-commit-msg"
+    }
   },
   "scripts": {
     "test": "npm run test:nsp && npm run test:requirejs && npm run test:global && npm run test:browserify",
