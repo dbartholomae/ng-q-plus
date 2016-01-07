@@ -1,3 +1,9 @@
+<a name=""></a>
+# [](https://github.com/dbartholomae/ng-q-plus/compare/v1.2.1...v) (2016-01-07)
+
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/dbartholomae/ngQplus/compare/1.2.0...1.2.1) (2016-01-07)
 ### Bug fixes
