@@ -23,6 +23,7 @@
     "validate-commit-msg": "*",
     "semantic-release": "^4.3.5",
     "conventional-changelog": "*",
+    "coveralls": "*",
     "coffee-script": "1.*",
     "istanbul": "*",
     "nsp": "*",
@@ -60,6 +61,7 @@
     "test:karma": "karma start karma.conf.coffee",
     "build": "coffee -c -o lib/ src/",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "coveralls": "cat coverage/lcov/coverage.txt | coveralls",
     "update-changelog": "conventional-changelog -p angular -i CHANGELOG.md -w",
     "commit-changelog": "git commit CHANGELOG.md -n -m \"docs: update changelog\" || echo \"No changes committed\""
   }
