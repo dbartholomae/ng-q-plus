@@ -1,5 +1,6 @@
 # ng-q-plus@1.2.1
 [![Build Status](https://travis-ci.org/dbartholomae/ngQPlus.svg?branch=master)](https://travis-ci.org/dbartholomae/ngQPlus)
+
 **ng-q-plus** is an angular module enhancing $q promises with additional features
 
 ```coffeescript
