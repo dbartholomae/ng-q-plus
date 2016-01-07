@@ -1,26 +1,60 @@
+require 'angular', {expose: 'angularjs'}
+require 'angular-mocks'
+
 describe "An ng-q-plus module", ->
   $q = null
   $rootScope = null
   $browser = null
+  ngQPlus = null
 
-  before (done) ->
-    if requirejs?
-      define 'angularjs', -> angular
-      requirejs ['base/lib/ng-q-plus'], (ngQPlus) ->
-        expect(-> angular.mock.module('ng-q-plus')).to.not.throw
+  moduleLoaders = [
+    {
+      name: "requirejs"
+      load: (done) ->
+        global.define = (dependencies, factory) ->
+          ngQPlus = factory.apply null, dependencies.map require
+          global.define = null
+          done()
+        global.define.amd = true
+        require "../lib-cov/requirejs/ng-q-plus"
+    }
+    {
+      name: "global"
+      load: (done) ->
+        head = document.getElementsByTagName('head')[0]
+        script = document.createElement 'script'
+        script.type = 'text/javascript'
+        script.src = 'base/lib-cov/ng-q-plus.js'
+        script.onload = -> done()
+        head.appendChild script
+        ngQPlus = "ng-q-plus"
+    }
+    {
+      name: "browserify"
+      load: (done) ->
+        ngQPlus = require "../lib-cov/ng-q-plus"
         done()
-    else if require?
-      require '../lib/ng-q-plus.js'
-      require 'angular-mocks'
-      done()
-    else done()
+    }
+  ]
 
-  beforeEach ->
-    angular.mock.module 'ng-q-plus'
-    inject ($injector) ->
-      $q = $injector.get '$q'
-      $rootScope = $injector.get '$rootScope'
-      $browser = $injector.get '$browser'
+  startTests = (testPromise, promiseFactories) ->
+    for moduleLoader in moduleLoaders
+      describe "loaded via " + moduleLoader.name, ->
+        before moduleLoader.load
+        it "exports the module name", ->
+          expect(ngQPlus).to.equal "ng-q-plus"
+
+        describe "that has been loaded", ->
+          beforeEach ->
+            angular.mock.module 'ng-q-plus'
+            inject ($injector) ->
+              $q = $injector.get '$q'
+              $rootScope = $injector.get '$rootScope'
+              $browser = $injector.get '$browser'
+
+          for promiseFactory in promiseFactories
+            describe "that creates a promise via " + promiseFactory.name, ->
+              testPromise.call this, promiseFactory.factory
 
   testPromise = (promiseFactory) ->
     it "is thenable", (done) ->
@@ -57,7 +91,8 @@ describe "An ng-q-plus module", ->
         $rootScope.$digest()
 
     describe "with a timeout", ->
-      it "rejects if the time runs out before the promise is resolved", (done) ->
+      describe "if the time runs out before the promise is resolved", ->
+      it "rejects with a standard message", (done) ->
         promise = promiseFactory.pending().timeout 100
         $rootScope.$digest()
         expect(promise.isPending()).to.be.true
@@ -66,7 +101,16 @@ describe "An ng-q-plus module", ->
           done()
         $browser.defer.flush()
         $rootScope.$digest()
-      it "calls a given callback if the time runs out before the promise is resolved", (done) ->
+      it "rejects with a given custom message", (done) ->
+        promise = promiseFactory.pending().timeout 100, "Custom rejection message"
+        $rootScope.$digest()
+        expect(promise.isPending()).to.be.true
+        promise.catch (err) ->
+          expect(err).to.equal "Custom rejection message"
+          done()
+        $browser.defer.flush()
+        $rootScope.$digest()
+      it "calls a given callback", (done) ->
         promise = promiseFactory.pending().timeout 100, (deferred) ->
           deferred.reject "Custom rejection message"
         $rootScope.$digest()
@@ -236,43 +280,41 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
-  describe "that creates a promise via defer()", ->
-    testPromise.call this,
-      pending: -> $q.defer().promise
-      fulfilled: (val) ->
-        deferred = $q.defer()
-        deferred.resolve val
-        return deferred.promise
-      rejected: (err) ->
-        deferred = $q.defer()
-        deferred.reject err
-        return deferred.promise
+  promiseFactories = [
+    {
+      name: "defer()"
+      factory:
+        pending: -> $q.defer().promise
+        fulfilled: (val) ->
+          deferred = $q.defer()
+          deferred.resolve val
+          return deferred.promise
+        rejected: (err) ->
+          deferred = $q.defer()
+          deferred.reject err
+          return deferred.promise
+    }
+    {
+      name: "resolve and reject"
+      factory:
+        pending: -> $q.defer().promise
+        fulfilled: (val) -> $q.resolve (val)
+        rejected: (err) -> $q.reject err
+    }
+    {
+      name: "when"
+      factory:
+        pending: -> $q.when $q.defer().promise
+        fulfilled: (val) -> $q.when val
+        rejected: (err) -> $q.when $q.reject (err)
+    }
+    {
+      name: "all"
+      factory:
+        pending: -> $q.all [$q.defer().promise]
+        fulfilled: (val) -> $q.all([val]).get(0)
+        rejected: (err) -> $q.all([$q.reject err]).get(0)
+    }
+  ]
 
-  describe "that creates a promise via resolve and reject", ->
-    testPromise.call this,
-      pending: -> $q.defer().promise
-      fulfilled: (val) -> $q.resolve (val)
-      rejected: (err) -> $q.reject err
-
-  describe "that creates a promise via when", ->
-    testPromise.call this,
-      pending: -> $q.when $q.defer().promise
-      fulfilled: (val) -> $q.when val
-      rejected: (err) -> $q.when $q.reject (err)
-
-  describe "that creates a promise via all", ->
-    testPromise.call this,
-      pending: -> $q.all [$q.defer().promise]
-      fulfilled: (val) -> $q.all([val]).get(0)
-      rejected: (err) -> $q.all([$q.reject err]).get(0)
-
-  describe "that is loaded", ->
-    it "exports the module name", (done) ->
-      if requirejs?
-        requirejs ['base/lib/ng-q-plus.js'], (name) ->
-          expect(name).to.equal 'ng-q-plus'
-          done()
-      else if require?
-        expect(require('../lib/ng-q-plus.js')).to.equal 'ng-q-plus'
-        done()
-      else done()
+  startTests testPromise, promiseFactories
