@@ -21,6 +21,8 @@
     "npm-build-tools": "*",
     "ghooks": "*",
     "validate-commit-msg": "*",
+    "semantic-release": "^4.3.5",
+    "conventional-changelog": "*",
     "coffee-script": "1.*",
     "nsp": "*",
     "mocha": "*",
@@ -35,8 +37,7 @@
     "angular": "1.*",
     "angular-mocks": "*",
     "requirejs": "*",
-    "coffeeify": "2.*",
-    "semantic-release": "^4.3.5"
+    "coffeeify": "2.*"
   },
   "main": "lib/ng-q-plus.js",
   "repository": {
@@ -46,7 +47,8 @@
   "config": {
     "ghooks": {
       "pre-commit": "npm run test",
-      "commit-msg": "validate-commit-msg"
+      "commit-msg": "validate-commit-msg",
+      "pre-push": "npm run update-changelog && npm run commit-changelog"
     }
   },
   "scripts": {
@@ -56,6 +58,8 @@
     "test:global": "karma start karma.global.conf.coffee",
     "test:browserify": "karma start karma.browserify.conf.coffee",
     "build": "coffee -c -o lib/ src/",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "update-changelog": "conventional-changelog -p angular -i CHANGELOG.md -w",
+    "commit-changelog": "git commit CHANGELOG.md -n -m \"docs: update changelog\" || echo \"No changes committed\""
   }
 }
