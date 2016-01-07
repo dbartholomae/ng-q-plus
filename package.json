@@ -38,6 +38,12 @@
     "test:requirejs": "karma start karma.requirejs.conf.coffee",
     "test:global": "karma start karma.global.conf.coffee",
     "test:browserify": "karma start karma.browserify.conf.coffee",
-    "build": "coffee -c -o lib/ src/"
+    "build": "coffee -c -o lib/ src/",
+
+    "prerelease": "npm run build && npm run test",
+
+    "release:major": "npm run prelease && npm version major && npm publish",
+    "release:minor": "npm run prelease && npm version minor && npm publish",
+    "release:patch": "npm run prelease && npm version patch && npm publish"
   }
 }
