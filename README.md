@@ -1,5 +1,5 @@
 # ng-q-plus
-# [![NPM version](https://badge.fury.io/js/ng-q-plus.svg)](https://npmjs.org/package/ng-q-plus) [![Build Status](https://travis-ci.org/dbartholomae/ng-q-plus.svg?branch=master)](https://travis-ci.org/dbartholomae/ng-q-plus) [![Dependency Status](https://david-dm.org/dbartholomae/ng-q-plus.svg?theme=shields.io)][https://david-dm.org/dbartholomae/ng-q-plus]
+# [![NPM version](https://badge.fury.io/js/ng-q-plus.svg)](https://npmjs.org/package/ng-q-plus) [![Build Status](https://travis-ci.org/dbartholomae/ng-q-plus.svg?branch=master)](https://travis-ci.org/dbartholomae/ng-q-plus) [![Dependency Status](https://david-dm.org/dbartholomae/ng-q-plus.svg?theme=shields.io)](https://david-dm.org/dbartholomae/ng-q-plus)
 
 **ng-q-plus** is an angular module enhancing $q promises with additional features
 
