@@ -14,6 +14,7 @@
   "devDependencies": {
     "npm-build-tools": "*",
     "coffee-script": "1.*",
+    "nsp": "*",
     "mocha": "*",
     "karma": "~0.13",
     "karma-mocha": "*",
@@ -34,16 +35,11 @@
     "url": "https://github.com/dbartholomae/ngQplus.git"
   },
   "scripts": {
-    "test": "npm run test:requirejs && npm run test:global && npm run test:browserify",
+    "test": "npm run test:nsp && npm run test:requirejs && npm run test:global && npm run test:browserify",
+    "test:nsp": "nsp check",
     "test:requirejs": "karma start karma.requirejs.conf.coffee",
     "test:global": "karma start karma.global.conf.coffee",
     "test:browserify": "karma start karma.browserify.conf.coffee",
-    "build": "coffee -c -o lib/ src/",
-
-    "prerelease": "npm run build && npm run test",
-
-    "release:major": "npm run prelease && npm version major && npm publish",
-    "release:minor": "npm run prelease && npm version minor && npm publish",
-    "release:patch": "npm run prelease && npm version patch && npm publish"
+    "build": "coffee -c -o lib/ src/"
   }
 }
