@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/dbartholomae/ng-q-plus.svg?branch=master)](https://travis-ci.org/dbartholomae/ng-q-plus)
 [![Coverage Status](https://coveralls.io/repos/dbartholomae/ng-q-plus/badge.svg?branch=master&service=github)](https://coveralls.io/github/dbartholomae/ng-q-plus?branch=master)
 [![Dependency Status](https://david-dm.org/dbartholomae/ng-q-plus.svg?theme=shields.io)](https://david-dm.org/dbartholomae/ng-q-plus)
+[![devDependency Status](https://david-dm.org/dbartholomae/ng-q-plus/dev-status.svg)](https://david-dm.org/dbartholomae/ng-q-plus#info=devDependencies)
 [![GitHub license](https://img.shields.io/github/license/dbartholomae/ng-q-plus.svg)]()
 
 **ng-q-plus** is an angular module enhancing $q promises with additional features
