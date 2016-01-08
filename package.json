@@ -60,7 +60,7 @@
     "test": "npm run test:nsp && npm run test:karma",
     "test:nsp": "nsp check",
     "test:karma": "karma start karma.conf.coffee",
-    "document": "codo src",
+    "document": "codo src --min-coverage 100",
     "postdocument": "git add doc/ && git commit doc/**/* -n -m \"docs: update documentation\" || echo \"No changes committed\"",
     "build": "coffee -c -o lib/ src/",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
