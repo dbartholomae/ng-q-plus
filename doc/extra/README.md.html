@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>CoffeeScript API Documentation</title>
+  <script src='../javascript/application.js'></script>
+  <script src='../javascript/search.js'></script>
+  <link rel='stylesheet' href='../stylesheets/application.css' type='text/css'>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../extra/README.md.html' title='Ng-q-plus'>
+      Ng-q-plus
+    </a>
+    &raquo;
+    <a href='../alphabetical_index.html' title='Index'>
+      Index
+    </a>
+    &raquo;
+    <span class='title'>README.md</span>
+  </div>
+</div>
+    <div id='content'>
+      <nav class='toc'>
+        <p class='title'>
+          <a class='hide_toc' href='#'>
+            <strong>Table of Contents</strong>
+          </a>
+          <small>
+            (<a class='float_toc' href='#'>left</a>)
+          </small>
+        </p>
+      </nav>
+      <div id='filecontents'>
+        <h1 id="ng-q-plus">ng-q-plus</h1><p><a href="https://npmjs.org/package/ng-q-plus"><img src="https://badge.fury.io/js/ng-q-plus.svg" alt="NPM version"></a>
+<a href="https://travis-ci.org/dbartholomae/ng-q-plus"><img src="https://travis-ci.org/dbartholomae/ng-q-plus.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/github/dbartholomae/ng-q-plus?branch=master"><img src="https://coveralls.io/repos/dbartholomae/ng-q-plus/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
+<a href="https://david-dm.org/dbartholomae/ng-q-plus"><img src="https://david-dm.org/dbartholomae/ng-q-plus.svg?theme=shields.io" alt="Dependency Status"></a>
+<a href=""><img src="https://img.shields.io/github/license/dbartholomae/ng-q-plus.svg" alt="GitHub license"></a></p><p><strong>ng-q-plus</strong> is an angular module enhancing $q promises with additional features</p><pre><code class="lang-coffeescript">angular.module &#39;app&#39;, [require(&#39;ng-q-plus&#39;)]
+.service &#39;myService&#39;, [&#39;$q&#39;, ($q) -&gt;
+  $q.when a: 1
+  .get(&#39;a&#39;)
+  .then (value) -&gt;
+    console.log value # = 1
+]
+</code></pre>
+<h2 id="api">API</h2><p>The module can be required via browserify require, as an AMD module via requirejs or as a global, if window.angular is
+present. It creates the angular module &#39;ng-q-plus&#39; and exports its name. This module augments the existing
+<code>$q</code> service, it does not create a service of its own.
+Each promise gets the following new methods:</p><h3 id="-ispending-"><code>isPending()</code></h3><p>Returns true if the promise is pending (<code>promise.$$state.status &lt;= 0</code>)</p><h3 id="-isfulfilled-"><code>isFulfilled()</code></h3><p>Returns true if the promise is fulfilled (<code>promise.$$state.status == 1</code>)</p><h3 id="-isrejected-"><code>isRejected()</code></h3><p>Returns true if the promise is rejected (<code>promise.$$state.status == 2</code>)</p><h3 id="-timeout-time_ms-cb-"><code>timeout(time_ms, cb)</code></h3><p>Checks after <code>time_ms</code> milliseconds whether the promise is still pending. If it is, then <code>cb</code> is called with
+the deferred object for this promise as an argument. If <code>cb</code> isn&#39;t a function, the promise instead rejects
+with <code>cb</code> as error. If <code>cb</code> is <code>undefined</code>, the promise rejects with <code>&quot;Timed out after &quot; + time_ms + &quot; ms&quot;</code>. 
+<code>timeout</code> is implemented via <code>$browser.defer</code>. In tests it has to be flushed via <code>$browser.defer.flush()</code>.</p><h3 id="-tap-cb-"><code>tap(cb)</code></h3><p>Equivalent to <code>then (value) -&gt; cb value; return value</code></p><h3 id="-get-attr-"><code>get(attr)</code></h3><p>Equivalent to <code>then (o) -&gt; o[attr]</code></p><h3 id="-set-attr-val-"><code>set(attr, val)</code></h3><p>If <code>val</code> and <code>attr</code> are not promises this is equivalent to <code>tap (o) -&gt; o[attr] = val</code>.
+If <code>val</code> or <code>attr</code> are promises these get resolved and <code>set</code> works as written above. 
+Please note that this can lead to side effects.</p><h3 id="-post-method-args-"><code>post(method, args)</code></h3><p>Equivalent to <code>then (o) -&gt; o[method].apply o, args</code></p><h3 id="-invoke-method-arg1-arg2-"><code>invoke(method, arg1, arg2, ...)</code></h3><p>Equivalent to <code>then (o) -&gt; o[method].apply o, [arg1, arg2, ...]</code></p><h3 id="-send-method-arg1-arg2-"><code>send(method, arg1, arg2, ...)</code></h3><p>Alternative name for <code>invoke</code></p><h3 id="-keys-"><code>keys()</code></h3><p>Equivalent to <code>then (o) -&gt; Object.keys o</code></p><h3 id="-fapply-args-"><code>fapply(args)</code></h3><p>Equivalent to <code>then (f) -&gt; f.apply undefined, args</code></p><h3 id="-fcall-arg1-arg2-"><code>fcall(arg1, arg2, ...)</code></h3><p>Equivalent to <code>then (f) -&gt; f.apply undefined, [arg1, arg2, ...]</code></p><h3 id="-all-"><code>all()</code></h3><p>Equivalent to <code>then (arr) -&gt; $q.all arr</code></p><h3 id="-props-"><code>props()</code></h3><p>Alternative name for <code>all</code></p><h3 id="-map-cb-"><code>map(cb)</code></h3><p>For promises for arrays equivalent to <code>all().then (arr) -&gt; $q.all arr.map cb</code>.
+For promises for objects <code>obj</code> the callback gets called as <code>cb(key, obj[key])</code>
+for all own properties of <code>obj</code> and uses the results from the callback to update
+ these values.</p><h3 id="-each-cb-"><code>each(cb)</code></h3><p>Equivalent to <code>@map (el) -&gt; cb el; el</code></p><h3 id="-join-p1-p2-cb-"><code>join(p1, p2, ..., cb)</code></h3><p>Calls <code>cb(v0, v1, v2, ...)</code> with <code>v0</code> being the value of the resolved promise
+itself and <code>v1, v2, ...</code> being the values of the resolved promises
+<code>v1, v2, ...</code>. It returns a promise for the result of <code>cb</code>.
+If any promise rejects, it returns a promise rejected with the same reason. </p>
+      </div>
+    </div>
+    <div id='footer'>
+  January 08, 16 03:32:21 by
+  <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
+    Codo
+  </a>
+  2.0.10
+  &#10034;
+  Press H to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/netzpirat' target='_parent'>@netzpirat</a>
+  &#10034;
+  <a href='http://twitter.com/_inossidabile' target='_parent'>@_inossidabile</a>
+</div>
+<iframe id='search_frame'></iframe>
+<div id='fuzzySearch'>
+  <input type='text'>
+  <ol></ol>
+</div>
+<div id='help'>
+  <p>
+    Quickly fuzzy find classes, mixins, methods, file:
+  </p>
+  <ul>
+    <li>
+      <span>T</span>
+      Open fuzzy finder dialog
+    </li>
+  </ul>
+  <p>
+    Control the navigation frame:
+  </p>
+  <ul>
+    <li>
+      <span>L</span>
+      Toggle list view
+    </li>
+    <li>
+      <span>C</span>
+      Show class list
+    </li>
+    <li>
+      <span>I</span>
+      Show mixin list
+    </li>
+    <li>
+      <span>F</span>
+      Show file list
+    </li>
+    <li>
+      <span>M</span>
+      Show method list
+    </li>
+    <li>
+      <span>E</span>
+      Show extras list
+    </li>
+  </ul>
+  <p>
+    You can focus and blur the search input:
+  </p>
+  <ul>
+    <li>
+      <span>S</span>
+      Focus search input
+    </li>
+    <li>
+      <span>Esc</span>
+      Blur search input
+    </li>
+  </ul>
+</div>
+  </body>
+</html>
