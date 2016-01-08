@@ -19,17 +19,14 @@
       # An extended promise
       class ExtendedPromise extends Promise
         # Returns true if the promise is pending
-        # (`promise.$$state.status <= 0`)
         # @return [Boolean] true if the promise is pending
         isPending: -> @$$state.status <= 0
 
         # Returns true if the promise is fulfilled
-        # (`promise.$$state.status == 1`)
         # @return [Boolean] true if the promise is fulfilled
         isFulfilled: -> @$$state.status is 1
 
         # Returns true if the promise is rejected
-        # (`promise.$$state.status == 2`)
         # @return [Boolean] true if the promise is rejected
         isRejected: -> @$$state.status is 2
 
