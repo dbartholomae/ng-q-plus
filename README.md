@@ -1,4 +1,6 @@
 # ng-q-plus
+
+[![Join the chat at https://gitter.im/dbartholomae/ng-q-plus](https://badges.gitter.im/dbartholomae/ng-q-plus.svg)](https://gitter.im/dbartholomae/ng-q-plus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![NPM version](https://badge.fury.io/js/ng-q-plus.svg)](https://npmjs.org/package/ng-q-plus)
 [![Build Status](https://travis-ci.org/dbartholomae/ng-q-plus.svg?branch=master)](https://travis-ci.org/dbartholomae/ng-q-plus)
 [![Coverage Status](https://coveralls.io/repos/dbartholomae/ng-q-plus/badge.svg?branch=master&service=github)](https://coveralls.io/github/dbartholomae/ng-q-plus?branch=master)
