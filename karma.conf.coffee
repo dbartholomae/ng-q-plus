@@ -8,6 +8,10 @@ module.exports = (config) ->
     preprocessors:
       "test/*.coffee": ['browserify']
 
+    client:
+      mocha:
+        reporter: 'html'
+
     browserify:
       debug: true
       transform: ["coffeeify"] #, "browserify-istanbul"]

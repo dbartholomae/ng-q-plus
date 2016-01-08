@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "npm-build-tools": "*",
+    "nodemon": "*",
     "ghooks": "*",
     "validate-commit-msg": "*",
     "semantic-release": "^4.3.5",
@@ -37,6 +38,7 @@
     "karma-chai-plugins": "*",
     "karma-coffee-preprocessor": "*",
     "karma-phantomjs-launcher": "*",
+    "karma-firefox-launcher": "*",
     "phantomjs": "*",
     "karma-browserify": "*",
     "karma-coverage": "*",
@@ -59,16 +61,24 @@
     }
   },
   "scripts": {
-    "pretest": "n-clean lib-cov && mkdir lib-cov && istanbul instrument lib/ng-q-plus.js > lib-cov/ng-q-plus.js && n-copy --source lib-cov --destination lib-cov/requirejs ng-q-plus.js",
+    "pretest": "npm run build && istanbul instrument lib/ng-q-plus.js | n-pipe lib-cov/ng-q-plus.js && n-copy --source lib-cov --destination lib-cov/requirejs ng-q-plus.js",
     "test": "npm run test:nsp && npm run test:karma",
     "test:nsp": "nsp check",
     "test:karma": "karma start karma.conf.coffee",
     "lint": "coffeelint -f .coffeelint.json src/ test/",
+
     "document": "codo src --min-coverage 100",
     "commit-documentation": "git add doc/ && git commit doc/ -n -m \"docs: update documentation\" || echo \"No changes committed\"",
+
     "build": "coffee -c -o lib/ src/",
+
+    "watch": "npm run pretest && n-run \"npm run watch:pretest\" \"npm run watch:test\"",
+    "watch:pretest": "nodemon --watch src/ --exec npm run pretest",
+    "watch:test": "karma start karma.conf.coffee --singleRun false --browsers Firefox --autoWatch true",
+
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "coveralls": "cat coverage/lcov/coverage.txt | coveralls",
+
     "update-changelog": "conventional-changelog -p angular -i CHANGELOG.md -w",
     "commit-changelog": "git commit CHANGELOG.md -n -m \"docs: update changelog\" || echo \"No changes committed\""
   }
