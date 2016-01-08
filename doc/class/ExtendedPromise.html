@@ -56,95 +56,108 @@
       </a>
     </span>
     <span class='desc'>
-      Returns true if the promise is pending (`promise.$ 
+      Returns true if the promise is pending (`promise.$
+
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#isFulfilled-dynamic'>
         #
-(void)
+(Boolean)
 <b>isFulfilled</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
+      Returns true if the promise is fulfilled (`promise.$
+
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#isRejected-dynamic'>
         #
-(void)
+(Boolean)
 <b>isRejected</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
+      Returns true if the promise is rejected (`promise.$
+
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#timeout-dynamic'>
-        #
-(void)
-<b>timeout</b><span>(time_ms, cb)</span>
+        ~
+(Promise)
+<b>timeout</b><span>(time_ms)</span>
       </a>
     </span>
     <span class='desc'>
+      Checks after <code>time_ms</code> milliseconds whether the promise is still pending and rejects or calls a callback if it is.
+
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#tap-dynamic'>
         #
-(void)
+(Promise)
 <b>tap</b><span>(cb)</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (value) -&gt; cb value; return value</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#get-dynamic'>
         #
-(void)
+(Promise)
 <b>get</b><span>(attr)</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (o) -&gt; o[attr]</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#set-dynamic'>
         #
-(void)
+(Promise)
 <b>set</b><span>(attr, val)</span>
       </a>
     </span>
     <span class='desc'>
+      If <code>val</code> and <code>attr</code> are not promises this is equivalent to <code>tap (o) -&gt; o[attr] = val</code>.
+
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#post-dynamic'>
         #
-(void)
+(Promise)
 <b>post</b><span>(method, args)</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (o) -&gt; o[method].apply o, args</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#send-dynamic'>
         #
-(void)
+(Promise)
 <b>send</b><span>(method, args...)</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (o) -&gt; o[method].apply o, [arg1, arg2, ...]</code> 
     </span>
   </li>
   <li>
@@ -156,50 +169,55 @@
       </a>
     </span>
     <span class='desc'>
+      Alternative name for <code>invoke</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#keys-dynamic'>
         #
-(void)
+(Promise)
 <b>keys</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (o) -&gt; Object.keys o</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#fapply-dynamic'>
         #
-(void)
+(Promise)
 <b>fapply</b><span>(args)</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (f) -&gt; f.apply undefined, args</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#fcall-dynamic'>
         #
-(void)
+(Promise)
 <b>fcall</b><span>(args...)</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (f) -&gt; f.apply undefined, [arg1, arg2, ...]</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#all-dynamic'>
         #
-(void)
+(Promise)
 <b>all</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>then (arr) -&gt; $q.all arr</code> 
     </span>
   </li>
   <li>
@@ -211,39 +229,46 @@
       </a>
     </span>
     <span class='desc'>
+      Alternative name for <code>all</code> 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#map-dynamic'>
         #
-(void)
+(Promise)
 <b>map</b><span>(cb)</span>
       </a>
     </span>
     <span class='desc'>
+      For promises for arrays equivalent to <code>all().then (arr) -&gt; $q.all arr.map cb</code>.
+
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#each-dynamic'>
         #
-(void)
+(Promise)
 <b>each</b><span>(cb)</span>
       </a>
     </span>
     <span class='desc'>
+      Equivalent to <code>@map (el) -&gt; cb el; el</code> results from the callback to update these values.
+
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#join-dynamic'>
         #
-(void)
+(Promise)
 <b>join</b><span>(promises..., cb)</span>
       </a>
     </span>
     <span class='desc'>
+      <p>Calls <code>cb(v0, v1, v2, ...)</code> with <code>v0</code> being the value of the resolved promise itself and <code>v1, v2, ...</code> being the values of the resolved
+promises <code>v1, v2, ...</code>.</p>
     </span>
   </li>
 </ul>
@@ -257,7 +282,8 @@
       <br>
     </p>
     <div class='docstring'>
-  <p>Returns true if the promise is pending (<code>promise.$$state.status &lt;= 0</code>)</p>
+  <p>Returns true if the promise is pending
+(<code>promise.$$state.status &lt;= 0</code>)</p>
 </div>
 <div class='tags'>
   <h3>Returns:</h3>
@@ -276,74 +302,426 @@
   <div class='method_details'>
     <p class='signature' id='isFulfilled-dynamic'>
       #
-(void)
+(Boolean)
 <b>isFulfilled</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Returns true if the promise is fulfilled
+(<code>promise.$$state.status == 1</code>)</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Boolean</tt>
+      )
+      &mdash;
+      <span class='desc'>true if the promise is fulfilled </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='isRejected-dynamic'>
       #
-(void)
+(Boolean)
 <b>isRejected</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Returns true if the promise is rejected
+(<code>promise.$$state.status == 2</code>)</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Boolean</tt>
+      )
+      &mdash;
+      <span class='desc'>true if the promise is rejected </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='timeout-dynamic'>
-      #
-(void)
+      ~
+(Promise)
+<b>timeout</b><span>(time_ms)</span>
+      <br>
+      ~
+(Promise)
+<b>timeout</b><span>(time_ms, err)</span>
+      <br>
+      ~
+(Promise)
 <b>timeout</b><span>(time_ms, cb)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Checks after <code>time_ms</code> milliseconds whether the promise is still
+pending and rejects or calls a callback if it is.
+<code>timeout</code> is implemented via <code>$browser.defer</code>. In tests it has to be
+flushed via <code>$browser.defer.flush()</code>.</p>
+</div>
+<div class='tags'>
+  <div class='overloads'>
+    <h3>Overloads:</h3>
+    <div class='overload'>
+      <p class='signature'>
+        ~
+(Promise)
+<b>timeout</b><span>(time_ms)</span>
+      </p>
+      <div class='docstring'>
+  <p>After timeout rejects with &quot;Timed out after {{time_ms}} ms&quot;.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>time_ms</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The time before timeout in milliseconds </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The original promise unless timed out </span>
+    </li>
+  </ul>
+</div>
+    </div>
+    <div class='overload'>
+      <p class='signature'>
+        ~
+(Promise)
+<b>timeout</b><span>(time_ms, err)</span>
+      </p>
+      <div class='docstring'>
+  <p>After timeout rejects with &quot;{{err}}&quot;.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>time_ms</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The time before timeout in milliseconds </span>
+    </li>
+    <li>
+      <span class='name'>err</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The rejection message to use if timed out </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The original promise unless timed out </span>
+    </li>
+  </ul>
+</div>
+    </div>
+    <div class='overload'>
+      <p class='signature'>
+        ~
+(Promise)
+<b>timeout</b><span>(time_ms, cb)</span>
+      </p>
+      <div class='docstring'>
+  <p>After timeout calls cb(deferred) with the deferred object for this
+promise.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>time_ms</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The time before timeout in milliseconds </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (
+          <tt>Function</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>Is called with the deferred object for this promise </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The original promise unless timed out </span>
+    </li>
+  </ul>
+</div>
+    </div>
+  </div>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='tap-dynamic'>
       #
-(void)
+(Promise)
 <b>tap</b><span>(cb)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (value) -&gt; cb value; return value</code></p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (
+          <tt>Function</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>To be called with the value of the original promise if fulfilled </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>Fulfills and rejects with the original one </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='get-dynamic'>
       #
-(void)
+(Promise)
 <b>get</b><span>(attr)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (o) -&gt; o[attr]</code></p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attr</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The attribute to get </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The property of the value of the original promise </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='set-dynamic'>
       #
-(void)
+(Promise)
 <b>set</b><span>(attr, val)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>If <code>val</code> and <code>attr</code> are not promises this is equivalent to
+<code>tap (o) -&gt; o[attr] = val</code>. If <code>val</code> or <code>attr</code> are promises these get
+resolved and <code>set</code> works as written above. Please note that this can
+lead to side effects.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attr</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The attribute to set </span>
+    </li>
+    <li>
+      <span class='name'>val</span>
+      <span class='type'>
+        (
+          <tt>*</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The new value of the attribute </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The adjusted object </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='post-dynamic'>
       #
-(void)
+(Promise)
 <b>post</b><span>(method, args)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (o) -&gt; o[method].apply o, args</code></p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>method</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The name of the method to call </span>
+    </li>
+    <li>
+      <span class='name'>args</span>
+      <span class='type'>
+        (
+          <tt>Array</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The arguments for the method </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The result of calling the method </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='send-dynamic'>
       #
-(void)
+(Promise)
 <b>send</b><span>(method, args...)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (o) -&gt; o[method].apply o, [arg1, arg2, ...]</code></p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>method</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The name of the method to call </span>
+    </li>
+    <li>
+      <span class='name'>(args...)</span>
+      <span class='type'>
+        (
+          <tt>*</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The arguments for the method </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The result of calling the method </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='invoke-dynamic'>
@@ -352,43 +730,139 @@
 <b>invoke</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Alternative name for <code>invoke</code></p>
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='../class/ExtendedPromise.html#send-dynamic'>ExtendedPromise#send</a>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='keys-dynamic'>
       #
-(void)
+(Promise)
 <b>keys</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (o) -&gt; Object.keys o</code></p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The keys of the value of the original promise </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='fapply-dynamic'>
       #
-(void)
+(Promise)
 <b>fapply</b><span>(args)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (f) -&gt; f.apply undefined, args</code></p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>args</span>
+      <span class='type'>
+        (
+          <tt>Array</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The arguments for the call </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The result of f </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='fcall-dynamic'>
       #
-(void)
+(Promise)
 <b>fcall</b><span>(args...)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (f) -&gt; f.apply undefined, [arg1, arg2, ...]</code></p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>(args...)</span>
+      <span class='type'>
+        (
+          <tt>Array</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The arguments for the call </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The result of f </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='all-dynamic'>
       #
-(void)
+(Promise)
 <b>all</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>then (arr) -&gt; $q.all arr</code></p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The object with all its values resolved </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='props-dynamic'>
@@ -397,39 +871,158 @@
 <b>props</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Alternative name for <code>all</code></p>
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='../class/ExtendedPromise.html#all-dynamic'>ExtendedPromise#all</a>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='map-dynamic'>
       #
-(void)
+(Promise)
 <b>map</b><span>(cb)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>For promises for arrays equivalent to
+<code>all().then (arr) -&gt; $q.all arr.map cb</code>.
+For promises for objects <code>obj</code> the callback gets called as
+<code>cb(key, obj[key])</code> for all own properties of <code>obj</code> and uses the
+results from the callback to update these values.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (
+          <tt>Function</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>To be called on all values of the promises value </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The object with its values modified </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='each-dynamic'>
       #
-(void)
+(Promise)
 <b>each</b><span>(cb)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Equivalent to <code>@map (el) -&gt; cb el; el</code>
+results from the callback to update these values.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (
+          <tt>Function</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>To be called on all values of the promises value </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The object with its values unmodified </span>
+    </li>
+  </ul>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='../class/ExtendedPromise.html#map-dynamic'>ExtendedPromise#map</a>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='join-dynamic'>
       #
-(void)
+(Promise)
 <b>join</b><span>(promises..., cb)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Calls <code>cb(v0, v1, v2, ...)</code> with <code>v0</code> being the value of the resolved
+promise itself and <code>v1, v2, ...</code> being the values of the resolved
+promises <code>v1, v2, ...</code>. It returns a promise for the result of <code>cb</code>.
+If any promise rejects, it returns a promise rejected with the same
+reason.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>promises...</span>
+      <span class='type'>
+        (
+          <tt>Promise</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>The promises to inject </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (
+          <tt>Function</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>To be called with the values of all promises. </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The result of the callback </span>
+    </li>
+  </ul>
+</div>
   </div>
 </div>
     </div>
     <div id='footer'>
-  January 08, 16 03:32:21 by
+  January 08, 16 04:35:16 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

@@ -49,7 +49,7 @@
 <h2 id="api">API</h2><p>The module can be required via browserify require, as an AMD module via requirejs or as a global, if window.angular is
 present. It creates the angular module &#39;ng-q-plus&#39; and exports its name. This module augments the existing
 <code>$q</code> service, it does not create a service of its own.
-Each promise gets the following new methods:</p><h3 id="-ispending-"><code>isPending()</code></h3><p>Returns true if the promise is pending (<code>promise.$$state.status &lt;= 0</code>)</p><h3 id="-isfulfilled-"><code>isFulfilled()</code></h3><p>Returns true if the promise is fulfilled (<code>promise.$$state.status == 1</code>)</p><h3 id="-isrejected-"><code>isRejected()</code></h3><p>Returns true if the promise is rejected (<code>promise.$$state.status == 2</code>)</p><h3 id="-timeout-time_ms-cb-"><code>timeout(time_ms, cb)</code></h3><p>Checks after <code>time_ms</code> milliseconds whether the promise is still pending. If it is, then <code>cb</code> is called with
+Each promise gets the new methods as defined in the <a href="doc/class/ExtendedPromise.html">ExtendedPromise class</a></p><h3 id="-ispending-"><code>isPending()</code></h3><p>Returns true if the promise is pending (<code>promise.$$state.status &lt;= 0</code>)</p><h3 id="-isfulfilled-"><code>isFulfilled()</code></h3><p>Returns true if the promise is fulfilled (<code>promise.$$state.status == 1</code>)</p><h3 id="-isrejected-"><code>isRejected()</code></h3><p>Returns true if the promise is rejected (<code>promise.$$state.status == 2</code>)</p><h3 id="-timeout-time_ms-cb-"><code>timeout(time_ms, cb)</code></h3><p>Checks after <code>time_ms</code> milliseconds whether the promise is still pending. If it is, then <code>cb</code> is called with
 the deferred object for this promise as an argument. If <code>cb</code> isn&#39;t a function, the promise instead rejects
 with <code>cb</code> as error. If <code>cb</code> is <code>undefined</code>, the promise rejects with <code>&quot;Timed out after &quot; + time_ms + &quot; ms&quot;</code>. 
 <code>timeout</code> is implemented via <code>$browser.defer</code>. In tests it has to be flushed via <code>$browser.defer.flush()</code>.</p><h3 id="-tap-cb-"><code>tap(cb)</code></h3><p>Equivalent to <code>then (value) -&gt; cb value; return value</code></p><h3 id="-get-attr-"><code>get(attr)</code></h3><p>Equivalent to <code>then (o) -&gt; o[attr]</code></p><h3 id="-set-attr-val-"><code>set(attr, val)</code></h3><p>If <code>val</code> and <code>attr</code> are not promises this is equivalent to <code>tap (o) -&gt; o[attr] = val</code>.
@@ -64,7 +64,7 @@ If any promise rejects, it returns a promise rejected with the same reason. </p>
       </div>
     </div>
     <div id='footer'>
-  January 08, 16 03:32:21 by
+  January 08, 16 04:35:16 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
