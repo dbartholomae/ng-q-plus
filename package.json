@@ -52,7 +52,7 @@
   "config": {
     "ghooks": {
       "commit-msg": "validate-commit-msg",
-      "pre-push": "npm run test && npm run document"
+      "pre-push": "npm run test && npm run document && npm run commit-documentation"
     }
   },
   "scripts": {
@@ -61,7 +61,7 @@
     "test:nsp": "nsp check",
     "test:karma": "karma start karma.conf.coffee",
     "document": "codo src --min-coverage 100",
-    "postdocument": "git add doc/ && git commit doc/ -n -m \"docs: update documentation\" || echo \"No changes committed\"",
+    "commit-documentation": "git add doc/ && git commit doc/ -n -m \"docs: update documentation\" || echo \"No changes committed\"",
     "build": "coffee -c -o lib/ src/",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "coveralls": "cat coverage/lcov/coverage.txt | coveralls",
