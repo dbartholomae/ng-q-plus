@@ -22,7 +22,7 @@ angular.module 'app', [require('ng-q-plus')]
 The module can be required via browserify require, as an AMD module via requirejs or as a global, if window.angular is
 present. It creates the angular module 'ng-q-plus' and exports its name. This module augments the existing
 `$q` service, it does not create a service of its own.
-Each promise gets the following new methods:
+Each promise gets the new methods as defined in the [ExtendedPromise class](doc/class/ExtendedPromise.html)
 
 ### `isPending()`
 Returns true if the promise is pending (`promise.$$state.status <= 0`)
