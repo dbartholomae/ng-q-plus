@@ -7,6 +7,7 @@ describe "An ng-q-plus module", ->
   $browser = null
   ngQPlus = null
 
+  # Define different ways to load the module
   moduleLoaders = [
     {
       name: "requirejs"
@@ -37,25 +38,45 @@ describe "An ng-q-plus module", ->
     }
   ]
 
-  startTests = (testPromise, promiseFactories) ->
-    for moduleLoader in moduleLoaders
-      describe "loaded via " + moduleLoader.name, ->
-        before moduleLoader.load
-        it "exports the module name", ->
-          expect(ngQPlus).to.equal "ng-q-plus"
+  # Define different ways to create a promise
+  promiseFactories = [
+    {
+      name: "defer()"
+      factory:
+        pending: -> $q.defer().promise
+        fulfilled: (val) ->
+          deferred = $q.defer()
+          deferred.resolve val
+          return deferred.promise
+        rejected: (err) ->
+          deferred = $q.defer()
+          deferred.reject err
+          return deferred.promise
+    }
+    {
+      name: "resolve and reject"
+      factory:
+        pending: -> $q.defer().promise
+        fulfilled: (val) -> $q.resolve (val)
+        rejected: (err) -> $q.reject err
+    }
+    {
+      name: "when"
+      factory:
+        pending: -> $q.when $q.defer().promise
+        fulfilled: (val) -> $q.when val
+        rejected: (err) -> $q.when $q.reject (err)
+    }
+    {
+      name: "all"
+      factory:
+        pending: -> $q.all [$q.defer().promise]
+        fulfilled: (val) -> $q.all([val]).get(0)
+        rejected: (err) -> $q.all([$q.reject err]).get(0)
+    }
+  ]
 
-        describe "that has been loaded", ->
-          beforeEach ->
-            angular.mock.module 'ng-q-plus'
-            inject ($injector) ->
-              $q = $injector.get '$q'
-              $rootScope = $injector.get '$rootScope'
-              $browser = $injector.get '$browser'
-
-          for promiseFactory in promiseFactories
-            describe "that creates a promise via " + promiseFactory.name, ->
-              testPromise.call this, promiseFactory.factory
-
+  # Define tests for promises created
   testPromise = (promiseFactory) ->
     it "is thenable", (done) ->
       promiseFactory.fulfilled("value")
@@ -280,41 +301,22 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
-  promiseFactories = [
-    {
-      name: "defer()"
-      factory:
-        pending: -> $q.defer().promise
-        fulfilled: (val) ->
-          deferred = $q.defer()
-          deferred.resolve val
-          return deferred.promise
-        rejected: (err) ->
-          deferred = $q.defer()
-          deferred.reject err
-          return deferred.promise
-    }
-    {
-      name: "resolve and reject"
-      factory:
-        pending: -> $q.defer().promise
-        fulfilled: (val) -> $q.resolve (val)
-        rejected: (err) -> $q.reject err
-    }
-    {
-      name: "when"
-      factory:
-        pending: -> $q.when $q.defer().promise
-        fulfilled: (val) -> $q.when val
-        rejected: (err) -> $q.when $q.reject (err)
-    }
-    {
-      name: "all"
-      factory:
-        pending: -> $q.all [$q.defer().promise]
-        fulfilled: (val) -> $q.all([val]).get(0)
-        rejected: (err) -> $q.all([$q.reject err]).get(0)
-    }
-  ]
+  # Run all tests for all ways to create a promise with module
+  # loaded in all different ways
+  for moduleLoader in moduleLoaders
+    describe "loaded via " + moduleLoader.name, ->
+      before moduleLoader.load
+      it "exports the module name", ->
+        expect(ngQPlus).to.equal "ng-q-plus"
 
-  startTests testPromise, promiseFactories
+      describe "that has been loaded", ->
+        beforeEach ->
+          angular.mock.module 'ng-q-plus'
+          inject ($injector) ->
+            $q = $injector.get '$q'
+            $rootScope = $injector.get '$rootScope'
+            $browser = $injector.get '$browser'
+
+        for promiseFactory in promiseFactories
+          describe "that creates a promise via " + promiseFactory.name, ->
+            testPromise.call this, promiseFactory.factory
