@@ -51,8 +51,9 @@
   },
   "config": {
     "ghooks": {
-      "precommit": "npm run test && npm run document && npm run commit-documentation",
-      "commit-msg": "validate-commit-msg"
+      "pre-commit": "npm run test && npm run document",
+      "commit-msg": "validate-commit-msg",
+      "post-commit": "npm run commit-documentation"
     }
   },
   "scripts": {
