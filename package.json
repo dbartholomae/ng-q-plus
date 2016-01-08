@@ -25,6 +25,7 @@
     "conventional-changelog": "*",
     "coveralls": "*",
     "coffee-script": "1.*",
+    "codo": "git://github.com/dbartholomae/codo.git",
     "istanbul": "*",
     "nsp": "*",
     "mocha": "*",
@@ -51,7 +52,7 @@
   "config": {
     "ghooks": {
       "commit-msg": "validate-commit-msg",
-      "pre-push": "npm run test"
+      "pre-push": "npm run test && npm run document"
     }
   },
   "scripts": {
@@ -59,6 +60,8 @@
     "test": "npm run test:nsp && npm run test:karma",
     "test:nsp": "nsp check",
     "test:karma": "karma start karma.conf.coffee",
+    "document": "codo src",
+    "postdocument": "git add doc/ && git commit doc/**/* -n -m \"docs: update documentation\" || echo \"No changes committed\"",
     "build": "coffee -c -o lib/ src/",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "coveralls": "cat coverage/lcov/coverage.txt | coveralls",
