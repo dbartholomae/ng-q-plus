@@ -174,6 +174,24 @@
           $delegate.all [this, promises...]
           .then (promises) -> cb promises...
 
+        # Traverses all child elements of plain (!) objects and arrays and waits for
+        # all promises found to be resolved. Might lead to unexpected behavior
+        # if any sub-property implements `.then` but is not meant to resolve.
+        # It rejects if any of the promises rejects.
+        # Please note that this can lead to side effects.
+        # @return [Promise] The object/array with all its children resolved
+        deep: ->
+          @then (result) ->
+            if Object.prototype.toString.call(result) is '[object Array]'
+              return $delegate.all result.map (value) ->
+                $delegate.resolve(value).deep()
+            else if Object.prototype.toString.call(result) is '[object Object]'
+              for own key, value of result
+                result[key] = $delegate.resolve(value).deep()
+              return $delegate.all result
+            else
+              return result
+
       Promise.prototype = ExtendedPromise.prototype
 
       return $delegate

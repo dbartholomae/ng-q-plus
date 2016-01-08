@@ -301,6 +301,42 @@ describe "An ng-q-plus module", ->
         done()
       $rootScope.$digest()
 
+    describe "that deeply resolves promises", ->
+      it "resolves with all promises resolved", (done) ->
+        p1 = promiseFactory.fulfilled "a"
+        p2 = promiseFactory.fulfilled "b"
+        p3 = promiseFactory.fulfilled "c"
+        obj = {
+          promise: p1,
+          array: [p2, { promise: p3, nonPromise: "d" }]
+          nonPromise: "d"
+        }
+        p = promiseFactory.fulfilled obj
+
+        p.deep().then (result) ->
+          expect(result).to.deep.equal
+            promise: "a"
+            array: ["b", { promise: "c", nonPromise: "d" }]
+            nonPromise: "d"
+          done()
+        $rootScope.$digest()
+
+      it "rejects with the first rejection", (done) ->
+        p1 = promiseFactory.fulfilled "a"
+        p2 = promiseFactory.rejected "bErr"
+        p3 = promiseFactory.rejected "cErr"
+        obj = {
+          promise: p1,
+          array: [p2, { promise: p3, nonPromise: "d" }]
+          nonPromise: "d"
+        }
+        p = promiseFactory.fulfilled obj
+
+        p.deep().catch (err) ->
+          expect(err).to.equal "bErr"
+          done()
+        $rootScope.$digest()
+
   # Run all tests for all ways to create a promise with module
   # loaded in all different ways
   for moduleLoader in moduleLoaders
