@@ -24,4 +24,4 @@ angular.module 'app', [require('ng-q-plus')]
 The module can be required via browserify require, as an AMD module via requirejs or as a global, if window.angular is
 present. It creates the angular module 'ng-q-plus' and exports its name. This module augments the existing
 `$q` service, it does not create a service of its own.
-Each promise gets the new methods as defined in the ExtendedPromise class which can be found in the [documentation](https://cdn.rawgit.com/dbartholomae/ng-q-plus/master/doc/index.html).
+Each promise gets the new methods as defined in the ExtendedPromise class which can be found in the [documentation](https://rawgit.com/dbartholomae/ng-q-plus/master/doc/index.html).
