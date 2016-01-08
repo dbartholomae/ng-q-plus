@@ -24,6 +24,8 @@
     "semantic-release": "^4.3.5",
     "conventional-changelog": "*",
     "coveralls": "*",
+    "coffeelint": "*",
+    "coffeelint-no-mocha-only": "*",
     "coffee-script": "1.*",
     "codo": "git://github.com/dbartholomae/codo.git",
     "istanbul": "*",
@@ -51,7 +53,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test && npm run document",
+      "pre-commit": "npm run lint && npm run test && npm run document",
       "commit-msg": "validate-commit-msg",
       "post-commit": "npm run commit-documentation"
     }
@@ -61,6 +63,7 @@
     "test": "npm run test:nsp && npm run test:karma",
     "test:nsp": "nsp check",
     "test:karma": "karma start karma.conf.coffee",
+    "lint": "coffeelint -f .coffeelint.json src/ test/",
     "document": "codo src --min-coverage 100",
     "commit-documentation": "git add doc/ && git commit doc/ -n -m \"docs: update documentation\" || echo \"No changes committed\"",
     "build": "coffee -c -o lib/ src/",
