@@ -277,7 +277,7 @@ promises <code>v1, v2, ...</code>.</p>
       </a>
     </span>
     <span class='desc'>
-      Traverses all child elements of plain objects and arrays and waits for all promises found to be resolved.
+      Traverses all child elements of plain (!) objects and arrays and waits for all promises found to be resolved.
 
     </span>
   </li>
@@ -1034,7 +1034,7 @@ reason.</p>
       <br>
     </p>
     <div class='docstring'>
-  <p>Traverses all child elements of plain objects and arrays and waits for
+  <p>Traverses all child elements of plain (!) objects and arrays and waits for
 all promises found to be resolved. Might lead to unexpected behavior
 if any sub-property implements <code>.then</code> but is not meant to resolve.
 It rejects if any of the promises rejects.
