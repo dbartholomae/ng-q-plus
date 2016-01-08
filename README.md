@@ -5,6 +5,7 @@
 [![Dependency Status](https://david-dm.org/dbartholomae/ng-q-plus.svg?theme=shields.io)](https://david-dm.org/dbartholomae/ng-q-plus)
 [![devDependency Status](https://david-dm.org/dbartholomae/ng-q-plus/dev-status.svg)](https://david-dm.org/dbartholomae/ng-q-plus#info=devDependencies)
 [![GitHub license](https://img.shields.io/github/license/dbartholomae/ng-q-plus.svg)]()
+[![Gitter](https://badges.gitter.im/dbartholomae/ng-q-plus.svg)](https://gitter.im/dbartholomae/ng-q-plus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 **ng-q-plus** is an angular module enhancing $q promises with additional features
 
