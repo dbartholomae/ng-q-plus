@@ -268,6 +268,19 @@
 promises <code>v1, v2, ...</code>.</p>
     </span>
   </li>
+  <li>
+    <span class='signature'>
+      <a href='#deep-dynamic'>
+        #
+(Promise)
+<b>deep</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      Traverses all child elements of plain objects and arrays and waits for all promises found to be resolved.
+
+    </span>
+  </li>
 </ul>
       <h2>Instance Method Details</h2>
       <div class='methods'>
@@ -1009,6 +1022,34 @@ reason.</p>
       )
       &mdash;
       <span class='desc'>The result of the callback </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='deep-dynamic'>
+      #
+(Promise)
+<b>deep</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>Traverses all child elements of plain objects and arrays and waits for
+all promises found to be resolved. Might lead to unexpected behavior
+if any sub-property implements <code>.then</code> but is not meant to resolve.
+It rejects if any of the promises rejects.
+Please note that this can lead to side effects.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Promise</tt>
+      )
+      &mdash;
+      <span class='desc'>The object/array with all its children resolved </span>
     </li>
   </ul>
 </div>
