@@ -8,7 +8,7 @@
     module.exports = factory require('angular')
   else
     # Browser globals
-    factory(root.angular);
+    factory(root.angular)
 )(this, (angular) ->
 
   angular.module 'ng-q-plus', []
@@ -174,7 +174,7 @@
         # @param cb [Function] To be called with the values of all promises.
         # @return [Promise] The result of the callback
         join: (promises..., cb) ->
-          $delegate.all [@, promises...]
+          $delegate.all [this, promises...]
           .then (promises) -> cb promises...
 
       Promise.prototype = ExtendedPromise.prototype

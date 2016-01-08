@@ -1,4 +1,4 @@
-require 'angular', {expose: 'angularjs'}
+require 'angular', { expose: 'angularjs' }
 require 'angular-mocks'
 
 describe "An ng-q-plus module", ->
@@ -92,34 +92,34 @@ describe "An ng-q-plus module", ->
 
     describe "with a timeout", ->
       describe "if the time runs out before the promise is resolved", ->
-      it "rejects with a standard message", (done) ->
-        promise = promiseFactory.pending().timeout 100
-        $rootScope.$digest()
-        expect(promise.isPending()).to.be.true
-        promise.catch (err) ->
-          expect(err).to.equal "Timed out after 100 ms"
-          done()
-        $browser.defer.flush()
-        $rootScope.$digest()
-      it "rejects with a given custom message", (done) ->
-        promise = promiseFactory.pending().timeout 100, "Custom rejection message"
-        $rootScope.$digest()
-        expect(promise.isPending()).to.be.true
-        promise.catch (err) ->
-          expect(err).to.equal "Custom rejection message"
-          done()
-        $browser.defer.flush()
-        $rootScope.$digest()
-      it "calls a given callback", (done) ->
-        promise = promiseFactory.pending().timeout 100, (deferred) ->
-          deferred.reject "Custom rejection message"
-        $rootScope.$digest()
-        expect(promise.isPending()).to.be.true
-        promise.catch (err) ->
-          expect(err).to.equal "Custom rejection message"
-          done()
-        $browser.defer.flush()
-        $rootScope.$digest()
+        it "rejects with a standard message", (done) ->
+          promise = promiseFactory.pending().timeout 100
+          $rootScope.$digest()
+          expect(promise.isPending()).to.be.true
+          promise.catch (err) ->
+            expect(err).to.equal "Timed out after 100 ms"
+            done()
+          $browser.defer.flush()
+          $rootScope.$digest()
+        it "rejects with a given custom message", (done) ->
+          promise = promiseFactory.pending().timeout 100, "Custom rejection message"
+          $rootScope.$digest()
+          expect(promise.isPending()).to.be.true
+          promise.catch (err) ->
+            expect(err).to.equal "Custom rejection message"
+            done()
+          $browser.defer.flush()
+          $rootScope.$digest()
+        it "calls a given callback", (done) ->
+          promise = promiseFactory.pending().timeout 100, (deferred) ->
+            deferred.reject "Custom rejection message"
+          $rootScope.$digest()
+          expect(promise.isPending()).to.be.true
+          promise.catch (err) ->
+            expect(err).to.equal "Custom rejection message"
+            done()
+          $browser.defer.flush()
+          $rootScope.$digest()
       it "rejects if the promise is rejected", (done) ->
         promise = promiseFactory.rejected("error").timeout 100
         promise.catch (err) ->
@@ -155,19 +155,19 @@ describe "An ng-q-plus module", ->
       promiseFactory.fulfilled(test: "value")
       .set(promiseFactory.fulfilled('test'), promiseFactory.fulfilled "new value")
       .then (val) ->
-        expect(val).to.deep.equal {test: "new value"}
+        expect(val).to.deep.equal { test: "new value" }
         done()
       $rootScope.$digest()
 
     it "allows to post methods", (done) ->
-      promiseFactory.fulfilled(test: (val)-> val).post('test', ["value"])
+      promiseFactory.fulfilled(test: (val) -> val).post('test', ["value"])
       .then (val) ->
         expect(val).to.equal "value"
         done()
       $rootScope.$digest()
 
     it "allows to invoke methods", (done) ->
-      promiseFactory.fulfilled(test: (val)-> val).invoke('test', "value")
+      promiseFactory.fulfilled(test: (val) -> val).invoke('test', "value")
       .then (val) ->
         expect(val).to.equal "value"
         done()
@@ -175,10 +175,10 @@ describe "An ng-q-plus module", ->
 
     it "allows to send methods", (done) ->
       hasBeenCalled = false
-      promiseFactory.fulfilled(test: (val)-> val).send('test')
+      promiseFactory.fulfilled(test: (val) -> val).send('test')
       .then ->
         hasBeenCalled = true
-      promiseFactory.fulfilled(test: (val)-> val).send('test', "value")
+      promiseFactory.fulfilled(test: (val) -> val).send('test', "value")
       .then (val) ->
         expect(hasBeenCalled).to.be.true
         expect(val).to.equal "value"
@@ -220,10 +220,10 @@ describe "An ng-q-plus module", ->
       $rootScope.$digest()
 
     it "allows to convert a promise for a hash of promises into a promise for a hash", (done) ->
-      obj = {a: promiseFactory.fulfilled(1), b: promiseFactory.fulfilled(2)}
+      obj = { a: promiseFactory.fulfilled(1), b: promiseFactory.fulfilled(2) }
       promiseFactory.fulfilled(obj).all()
       .then (obj) ->
-        expect(obj).to.deep.equal {a: 1, b: 2}
+        expect(obj).to.deep.equal { a: 1, b: 2 }
         done()
       $rootScope.$digest()
 
@@ -237,7 +237,7 @@ describe "An ng-q-plus module", ->
       $rootScope.$digest()
 
     it "allows to map a promise for an object", (done) ->
-      obj = {a: promiseFactory.fulfilled(1), b: promiseFactory.fulfilled(2)}
+      obj = { a: promiseFactory.fulfilled(1), b: promiseFactory.fulfilled(2) }
       promiseFactory.fulfilled(obj)
       .map (key, value) ->
         if key is 'a'
@@ -245,7 +245,7 @@ describe "An ng-q-plus module", ->
         else if key is 'b'
           return 4
       .then (obj) ->
-        expect(obj).to.deep.equal {a: 3, b: 4}
+        expect(obj).to.deep.equal { a: 3, b: 4 }
         done()
       $rootScope.$digest()
 
