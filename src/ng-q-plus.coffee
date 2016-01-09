@@ -107,7 +107,7 @@
         send: (method, args...) ->
           @then (o) -> o[method].apply o, args
 
-        # Alternative name for `invoke`
+        # Alternative name for `send`
         # @see ExtendedPromise#send
         invoke: -> @send arguments...
 
