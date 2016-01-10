@@ -1,5 +1,6 @@
 {
   "name": "ng-q-plus",
+  "version": "2.1.0",
   "description": "A module enhancing $q promises with additional features",
   "keywords": [
     "angularjs",
@@ -24,6 +25,7 @@
     "validate-commit-msg": "*",
     "semantic-release": "^4.3.5",
     "conventional-changelog": "*",
+    "write-version-to-package-json": "^1.0.1",
     "coveralls": "*",
     "coffeelint": "*",
     "coffeelint-no-mocha-only": "*",
@@ -66,20 +68,15 @@
     "test:nsp": "nsp check",
     "test:karma": "karma start karma.conf.coffee",
     "lint": "coffeelint -f .coffeelint.json src/ test/",
-
     "document": "codo src --min-coverage 100",
     "commit-documentation": "git add doc/ && git commit doc/ -n -m \"docs: update documentation\" || echo \"No changes committed\"",
-
     "build": "coffee -c -o lib/ src/",
-
     "watch": "npm run pretest && n-run \"npm run watch:pretest\" \"npm run watch:test\"",
     "watch:pretest": "nodemon --watch src/ --exec npm run pretest",
     "watch:test": "karma start karma.conf.coffee --singleRun false --browsers Firefox --autoWatch true",
-
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "coveralls": "cat coverage/lcov/coverage.txt | coveralls",
-
-    "update-changelog": "conventional-changelog -p angular -i CHANGELOG.md -w",
+    "update-changelog": "write-version-to-package-json && conventional-changelog -p angular -i CHANGELOG.md -w",
     "commit-changelog": "git commit CHANGELOG.md -n -m \"docs: update changelog\" || echo \"No changes committed\""
   }
 }
