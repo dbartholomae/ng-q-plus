@@ -31,6 +31,13 @@ require('angular').module 'app', [require('ng-q-plus')]
 ]
 ```
 
+## CDN
+
+The module should be available via [npmcdn](https://npmcdn.com/) at
+[https://npmcdn.com/ng-q-plus](https://npmcdn.com/ng-q-plus)
+
+No guarantees for uptime or anything like that, though.
+
 ## API
 
 The module can be required via browserify require, as an AMD module via requirejs or as a global, if window.angular is
