@@ -40,12 +40,24 @@
 <a href="https://david-dm.org/dbartholomae/ng-q-plus"><img src="https://david-dm.org/dbartholomae/ng-q-plus.svg?theme=shields.io" alt="Dependency Status"></a>
 <a href="https://david-dm.org/dbartholomae/ng-q-plus#info=devDependencies"><img src="https://david-dm.org/dbartholomae/ng-q-plus/dev-status.svg" alt="devDependency Status"></a>
 <a href=""><img src="https://img.shields.io/github/license/dbartholomae/ng-q-plus.svg" alt="GitHub license"></a>
-<a href="https://gitter.im/dbartholomae/ng-q-plus?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/dbartholomae/ng-q-plus.svg" alt="Gitter"></a></p><p><strong>ng-q-plus</strong> is an angular module enhancing $q promises with additional features</p><pre><code class="lang-coffeescript">angular.module &#39;app&#39;, [require(&#39;ng-q-plus&#39;)]
+<a href="https://gitter.im/dbartholomae/ng-q-plus?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/dbartholomae/ng-q-plus.svg" alt="Gitter"></a></p><p><strong>ng-q-plus</strong> is an angular module enhancing $q promises with additional features</p><pre><code class="lang-coffeescript">require(&#39;angular&#39;).module &#39;app&#39;, [require(&#39;ng-q-plus&#39;)]
 .service &#39;myService&#39;, [&#39;$q&#39;, ($q) -&gt;
-  $q.when a: 1
-  .get(&#39;a&#39;)
-  .then (value) -&gt;
-    console.log value # = 1
+  getPkmn = (i) -&gt; $q.resolve { id: i, name: &quot;Some gibberish name&quot; }
+  getDesc = (i) -&gt; $q.resolve &quot;This is pokemon &quot; + i
+
+  pokemons = $q.resolve [1..150]
+  .map (i) -&gt;
+    getPkmn(i).set &#39;description&#39;, getDesc(i)
+  .timeout 1000, &quot;Uh oh, it took longer than 1 second to catch &#39;em all&quot;
+  .then (list) -&gt;
+    console.log JSON.stringify list, null, 2
+    # Will print out
+    # [
+    #  { id: 1, name: &quot;Some gibberisch name&quot;, description &quot;This is pokemon 1&quot; }
+    #  { id: 2, name: &quot;Some gibberisch name&quot;, description &quot;This is pokemon 2&quot; }
+    #  ...
+    #  { id: 150, name: &quot;Some gibberisch name&quot;, description &quot;This is pokemon 150&quot; }
+    # ]
 ]
 </code></pre>
 <h2 id="api">API</h2><p>The module can be required via browserify require, as an AMD module via requirejs or as a global, if window.angular is
