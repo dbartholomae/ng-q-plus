@@ -10,12 +10,24 @@
 **ng-q-plus** is an angular module enhancing $q promises with additional features
 
 ```coffeescript
-angular.module 'app', [require('ng-q-plus')]
+require('angular').module 'app', [require('ng-q-plus')]
 .service 'myService', ['$q', ($q) ->
-  $q.when a: 1
-  .get('a')
-  .then (value) ->
-    console.log value # = 1
+  getPkmn = (i) -> $q.resolve { id: i, name: "Some gibberish name" }
+  getDesc = (i) -> $q.resolve "This is pokemon " + i
+
+  pokemons = $q.resolve [1..150]
+  .map (i) ->
+    getPkmn(i).set 'description', getDesc(i)
+  .timeout 1000, "Uh oh, it took longer than 1 second to catch 'em all"
+  .then (list) ->
+    console.log JSON.stringify list, null, 2
+    # Will print out
+    # [
+    #  { id: 1, name: "Some gibberisch name", description "This is pokemon 1" }
+    #  { id: 2, name: "Some gibberisch name", description "This is pokemon 2" }
+    #  ...
+    #  { id: 150, name: "Some gibberisch name", description "This is pokemon 150" }
+    # ]
 ]
 ```
 
