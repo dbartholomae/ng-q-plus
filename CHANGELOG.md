@@ -1,4 +1,10 @@
 <a name="2.1.0"></a>
+# [2.1.0](https://github.com/dbartholomae/ng-q-plus/compare/v2.1.0...v2.1.0) (2016-01-18)
+
+
+
+
+<a name="2.1.0"></a>
 # [2.1.0](https://github.com/dbartholomae/ng-q-plus/compare/v2.1.0...v2.1.0) (2016-01-16)
 
 

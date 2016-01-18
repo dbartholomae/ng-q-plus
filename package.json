@@ -30,7 +30,7 @@
     "coffeelint": "*",
     "coffeelint-no-mocha-only": "*",
     "coffee-script": "1.*",
-    "codo": "git://github.com/dbartholomae/codo.git",
+    "codo": "^2.1.0",
     "istanbul": "*",
     "nsp": "*",
     "mocha": "*",
