@@ -39,9 +39,10 @@
     "karma-angular": "*",
     "karma-chai-plugins": "*",
     "karma-coffee-preprocessor": "*",
+    "phantomjs-prebuilt": "*",
     "karma-phantomjs-launcher": "*",
-    "karma-firefox-launcher": "*",
     "phantomjs": "*",
+    "browserify": "*",
     "karma-browserify": "*",
     "karma-coverage": "*",
     "karma-threshold-reporter": "*",
@@ -57,9 +58,9 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run lint && npm run test && npm run document && npm run update-changelog",
+      "pre-commit": "npm run lint && npm run test && npm run document",
       "commit-msg": "validate-commit-msg",
-      "post-commit": "npm run commit-documentation && npm run commit-changelog"
+      "post-commit": "npm run commit-documentation"
     }
   },
   "scripts": {
@@ -75,8 +76,6 @@
     "watch:pretest": "nodemon --watch src/ --exec npm run pretest",
     "watch:test": "karma start karma.conf.coffee --singleRun false --browsers Firefox --autoWatch true",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "coveralls": "cat coverage/lcov/coverage.txt | coveralls",
-    "update-changelog": "write-version-to-package-json && conventional-changelog -p angular -i CHANGELOG.md -w",
-    "commit-changelog": "git commit CHANGELOG.md -n -m \"docs: update changelog\" || echo \"No changes committed\""
+    "coveralls": "cat coverage/lcov/coverage.txt | coveralls"
   }
 }
