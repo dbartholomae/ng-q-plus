@@ -33,8 +33,8 @@ require('angular').module 'app', [require('ng-q-plus')]
 
 ## CDN
 
-The module should be available via [npmcdn](https://npmcdn.com/) at
-[https://npmcdn.com/ng-q-plus](https://npmcdn.com/ng-q-plus)
+The module should be available via [unpkg](https://unpkg.com/) at
+[https://unpkg.com/ng-q-plus](https://unpkg.com/ng-q-plus)
 
 No guarantees for uptime or anything like that, though.
 
