@@ -23,7 +23,7 @@
     "nodemon": "*",
     "ghooks": "*",
     "validate-commit-msg": "*",
-    "semantic-release": "^4.3.5",
+    "semantic-release": "^15.10.4",
     "conventional-changelog": "*",
     "write-version-to-package-json": "^1.0.1",
     "coveralls": "*",
@@ -34,7 +34,7 @@
     "istanbul": "*",
     "nsp": "*",
     "mocha": "*",
-    "karma": "~0.13",
+    "karma": "~3.0.0",
     "karma-mocha": "*",
     "karma-angular": "*",
     "karma-chai-plugins": "*",
@@ -49,7 +49,7 @@
     "angular": "1.*",
     "angular-mocks": "*",
     "requirejs": "*",
-    "coffeeify": "2.*"
+    "coffeeify": "^3.0.1"
   },
   "main": "lib/ng-q-plus.js",
   "repository": {
