@@ -1,3 +1,5 @@
+This package is no longer supported.
+
 # ng-q-plus
 [![NPM version](https://badge.fury.io/js/ng-q-plus.svg)](https://npmjs.org/package/ng-q-plus)
 [![Build Status](https://travis-ci.org/dbartholomae/ng-q-plus.svg?branch=master)](https://travis-ci.org/dbartholomae/ng-q-plus)
